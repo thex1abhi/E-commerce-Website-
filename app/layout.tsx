@@ -1,16 +1,16 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from "next/font/local"
 import "./globals.css";
+import Header from "@/components/Header";
+import Footer from "@/components/Footer"
+const lexend = localFont({
+  src: '/fonts/Lexend-Regular.ttf'
+})
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const cunia = localFont({
+  src: "/fonts/Cunia.ttf",
+  variable: '--font-cunia'
+})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,9 +25,14 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${lexend.className} ${cunia.variable} h-full antialiased bg-slate-50  `}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col"> 
+        <Header />
+       <main className="main">  {children} 
+         </main>
+        <Footer /> 
+        </body>
     </html>
   );
 }
