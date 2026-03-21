@@ -1,5 +1,6 @@
 import ProductCard from "@/components/ProductCard";
-import { allProducts, categoryItems } from "@/data/data";
+import { allProducts, categoryItems, testimonials } from "@/data/data";
+import { RiDoubleQuotesL } from "@remixicon/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -47,15 +48,50 @@ const page = () => {
           <h2 className="section-title text-center  ">Explore All products </h2>
           {/* card-wrapper */}
           <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-             {allProducts.slice(4, 12).map(product => (
+            {allProducts.slice(4, 12).map(product => (
               <ProductCard key={product.id} {...product} />
             ))}
 
           </div>
           {/* btn  */}
-          <Link href={'/shop'} >View all Products   </Link>
+          <Link href={'/shop'} className="btn-primary block mt-14 mx-auto max-w-max " >View all Products   </Link>
         </div>
       </section>
+
+      {/* testimonials  */}
+      <section className="py-28">
+        <div className="container">
+          {/* title  */}
+          <h2 className="section-title text-center "> What our clients says  </h2>
+          {/* wrapper  */}
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 mt-11 lg:mt-14  ">
+            {testimonials.map(testimonial => (
+              <div className="bg-white rounded-xl p-8 flex flex-col " key={testimonial.id} >
+                <span className="text-amber-600 mb-3" >
+                  <RiDoubleQuotesL />
+                </span>
+                <p className="text-gray-600 mb-6 italic "> 
+                  &ldquo;{testimonial.quote}&ldquo;
+                </p>
+                {/* author info  */}
+                <div className="flex flex-col  items-center mt-auto">
+                  {/* img  */}
+                  <div className="size-16 ">
+                    <Image src={testimonial.img}  className="w-full h-full rounded-full object-cover  " width={150} height={150} alt={testimonial.name} />
+                  </div>
+                  {/* content  */}
+                  <div className="mt-3 text-center ">
+                    <h3 className="">{testimonial.name}</h3>
+                    <p className="text-sm text-gray-600 ">{testimonial.role}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+
     </>
   )
 };

@@ -13,25 +13,25 @@ const ProductCard = ({ id, img, price, name, star }: ProductCardProps) => {
                 <div className="py-10 relative flex items-center justify-center bg-amber-50 h-full rounded-xl  ">
                     <Image src={img} alt={name} height={200} width={200} className="" />
                     <button>
-                        <Link href={'/shop/'} className="absolute top-0 right-0 bg-white gap-2 border border-amber-200 p-2 rounded-xs  opacity-0 group-hover:opacity-100 transition-opacity " > <RiEyeLine />
+                        <Link href={'/shop/'} className="absolute top-0 right-0 bg-white gap-2 border border-amber-200 p-2 rounded-xs  opacity-0 group-hover:opacity-100   hover:text-amber-600 focus:text-amber-600 transition-all " title="View product details " > <RiEyeLine />
                         </Link>
                     </button>
 
                 </div>
                 {/* content  */}
-                <div className="">
+                <div className="space-y-5 mt-auto ">
                     {/* Add to cart btn  */}
-                    <button className="btn-primary" >
+                    <button className="btn-primary flex items-center justify-center w-full  " >
                         <span className="   ">
-                            <RiShoppingCart2Line />
+                            <RiShoppingCart2Line  size={22} />
                         </span>
                     </button>
-                    <div className="">
-                        <h3 className="">{name}</h3>
-                        <p className=""> ${price} </p>
+                    <div className="space-y-1">
+                        <h3 className="text-xl">{name}</h3>
+                        <p className="text-amber-700 font-semibold "> ${price} </p>
                         {/* stars  */}
-                        <div className=""> {[1, 2, 3, 4, 5].map(i => (
-                            <RiStarFill key={i} />
+                        <div className=" flex items-center gap-0.5 text-amber-500 "> {[1, 2, 3, 4, 5].map(i => (
+                            <RiStarFill key={i} size={20} />
                         ))} </div>
                     </div>
                 </div>
