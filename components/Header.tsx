@@ -33,7 +33,7 @@ const Header = () => {
                         <RiShoppingCart2Line size={26} className="hover:text-amber-600  focus:text-amber-600 transition-all" />
                         <span className="absolute top-0 right-0  bg-amber-600 flex items-center size-5 rounded-full text-white justify-center text-xs " > 2 </span>
                     </Link>
-                    <button className="btn-primary" > LogIn </button>
+                    <Link href={'login'} className="btn-primary"  > LogIn </Link>
                 </div>
             </nav>
             {/* mobile menu */}
@@ -56,12 +56,12 @@ const Header = () => {
                                 <Link href={item.href} className={`block p-1.5 hover:text-amber-600 focus:text-amber-600 transition-colors  
                                  ${pathname === "/item.href" ? "text-amber-600" : ""}  
                                 `}
-                                    onClick={handleClick}
+                                    onClick={handleClick} 
                                 > {item.label} </Link>  </li>
                         ))
                         }
                     </ul>
-                    <button className="btn-primary w-full " onClick={handleClick} > LogIn </button>
+                    <Link href={"/login"} className="btn-primary w-full text-center  " onClick={handleClick} > LogIn </Link> 
                 </div>
             </nav>
         </div>
