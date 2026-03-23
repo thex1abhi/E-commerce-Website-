@@ -43,7 +43,7 @@ const page = () => {
 
       {/* Products */}
       <section className="pt-28 ">
-        <div className="contaner">
+        <div className="container">
           {/* title */}
           <h2 className="section-title text-center  ">Explore All products </h2>
           {/* card-wrapper */}

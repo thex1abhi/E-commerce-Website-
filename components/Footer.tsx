@@ -16,22 +16,21 @@ const Footer = () => {
 
           {/* Column 1 — Description */}
           <div className="space-y-3">
-            <span className="text-xl font-semibold text-amber-600 ">Royalwoods</span>
+            <span className="text-xl font-semibold ">Royalwoods</span>
             <p className="text-neutral-400 text-sm">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consectetur officiis sed ipsum dicta!
+            Stylish furniture made with care and designed for everyday living. Quality, comfort, and design — delivered to your doorstep.
             </p>
           </div>
 
           {/* Column 2 & 3 — Footer Lists */}
           {footerList.map((item) => (
             <div key={item.id}>
-              <p className="font-semibold mb-3">{item.title}</p>
+              <p className="font-semibold mb-3 ">{item.title}</p>
 
               <ul className="space-y-2 text-sm text-neutral-400">
                 {item.links.map((link) => (
                   <li key={link}>
-                    <Link href="#" className="hover:text-white transition">
+                    <Link href="#" className="hover:text-amber-500 transition">
                       {link}
                     </Link>
                   </li>
@@ -44,13 +43,13 @@ const Footer = () => {
           <div className="space-y-4">
             <div>
               <p className="font-semibold mb-2">Get In Touch</p>
-              <p className="text-sm text-neutral-400">
+              <p className="text-sm hover:text-amber-500 text-neutral-400">
                 Email:{" "}
                 <a href="mailto:yabhishekk480@gmail.com" className="hover:text-white">
                   yabhishekk480@gmail.com
                 </a>
               </p>
-              <p className="text-sm text-neutral-400">
+              <p className="text-sm  text-neutral-400">
                 Phone:{" "}
                 <a href="tel:99674XXXX" className="hover:text-white">
                   99674XXXX
@@ -62,7 +61,7 @@ const Footer = () => {
             <div className="flex gap-4">
               {[RiFacebookFill, RiInstagramLine, RiTwitterXLine].map(
                 (Icon, index) => (
-                  <a key={index} href="#" className="hover:text-neutral-300">
+                  <a key={index} href="#" className="hover:text-amber-500">
                     <Icon size={20} />
                   </a>
                 )

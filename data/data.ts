@@ -214,7 +214,7 @@ export const testimonials = [
     role: "Homeowner",
     img: "/images/testimonial-1.png",
     quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsum minus debitis asperiores rerum!",
+      "The quality of the furniture exceeded my expectations. The sofa is incredibly comfortable and fits perfectly in my living room. Highly recommended !! ",
   },
   {
     id: 2,
@@ -222,7 +222,7 @@ export const testimonials = [
     role: "Interior Designer",
     img: "/images/testimonial-2.png",
     quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsum minus debitis asperiores rerum!",
+      "Beautiful designs and excellent customer service. Delivery was smooth, and the furniture looks exactly like the pictures online.",
   },
   {
     id: 3,
@@ -230,7 +230,7 @@ export const testimonials = [
     role: "Architect",
     img: "/images/testimonial-3.png",
     quote:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt ipsum minus debitis asperiores rerum!",
+      "Affordable prices without compromising on quality. My home feels completely transformed after buying from this store."
   },
 ];
 export const footerList = [
