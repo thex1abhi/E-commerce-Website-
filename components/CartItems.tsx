@@ -1,9 +1,28 @@
 
+"use client";
+import { allProducts } from "@/data/data";
+import { useCartStore } from "@/store/cartstore";
 import { RiAddLine, RiDeleteBin6Line, RiSubtractLine } from "@remixicon/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useMemo } from "react";
 
 const CartItems = () => {
+    const items = useCartStore((state) => state.items);
+    const CartItems = useMemo(() => {
+        return items.map(item => {
+            const product = allProducts.find((p) => p.id === item.id)
+            if (!product) throw new Error("Product not found ")
+            return {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                img: product.img,
+                quantity: item.quantity,
+                category: product.category,
+            }
+        })
+    }, [items])
     return <section className="py-24 md:py-28 ">
         <div className="container">
             {/* Title  */}
@@ -17,30 +36,32 @@ const CartItems = () => {
                     <div className="bg-white border border-gray-200 rounded-lg p-4 sm:p-6 md:p-12 text-center    overflow-hidden  ">
                         {/* mobile view  */}
                         <div className="md:hidden divide-y divide-gray-200">
-                            {/* item  */}
-                            <div className="p-4 ">
-                                {/* product  */}
+                            {CartItems.map((item)=>(
+                            //  items  
+                        
+                                <div key={item.id} className="p-4 ">
+                                    {/* product   */}
                                 <div className="flex  gap-2  items-start">
 
                                     <div className="w-10 h-10 relative shrink-0">
                                         <Image
-                                            src="/images/product-1.png"
-                                            alt="item.name"
-                                            fill 
+                                            src={item.img}
+                                            alt={item.name}
+                                            fill
                                             className="rounded-md object-cover"
                                         />
                                     </div>
-                                    {/* content  */}
+                                  
                                     <div className="flex-1">
-                                        <h3 className=" font-medium mb-2  " > {"item.name"} </h3>
-                                        <p className="text-gray-600 mb-2 "> $ item.price </p>
-                                        {/* counter  */}
+                                        <h3 className=" font-medium mb-2  " > {item.name} </h3>
+                                        <p className="text-gray-600 mb-2 "> $ {item.price} </p>
+                                     
                                         <div className=" flex items-center  gap-2 border border-gray-300 w-fit  rounded-lg overflow-hidden ">
                                             <button className="p-2 hover:bg-gray-100 focus:bg-gray-100 transition ">
                                                 <RiSubtractLine size={18} />
                                             </button>
                                             <p className="px-3 font-medium">
-                                                2
+                                               {item.quantity}
                                             </p>
                                             <button className="p-2 hover:bg-gray-100 focus:bg-gray-100 transition "> <RiAddLine size={18} />
                                             </button>
@@ -57,13 +78,15 @@ const CartItems = () => {
                                         <p className="text-gray-600 font-semibold  ">Subtotal:</p>
                                         <p className=" text-amber-600 font-cunia"> ${500} </p>
                                     </div>
-                                </div> 
+                                </div>
                                 {/* total price  */}
                                 <div className="mt-2 pt-3 border-t border-gray-100 flex justify-between">
                                     <p className="text-gray-600 font-semibold  ">Total:</p>
                                     <p className=" text-amber-600 font-cunia"> ${"700"} </p>
                                 </div>
                             </div>
+                            ))}
+                            
                         </div>
                         {/* desktop menu  */}
                         <div className=" hidden md:block overflow-x-auto ">

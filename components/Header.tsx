@@ -1,16 +1,21 @@
 "use client";
 import { navItems } from "@/data/data";
+import { useCartStore } from "@/store/cartstore";
 import { RiCloseLine, RiMenuLine, RiShoppingCart2Line } from "@remixicon/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 const Header = () => {
 
     const [openMenu, setOpenMenu] = useState<boolean>(false);
     const handleClick = () => setOpenMenu(!openMenu);
     const pathname = usePathname();
-
+    const items = useCartStore((state) => state.items)
+    // total items 
+    const totalItems = useMemo(() => {
+        return items.reduce((total, item) => total + item.quantity, 0)
+    }, [items]);
 
 
     return <header className="sticky top-0 border-gray-200 border-b w-full py-3 bg-white z-50 font-cunia  " >
@@ -31,7 +36,8 @@ const Header = () => {
                 <div className="flex items-center gap-3.5" >
                     <Link href={'/shopping-cart'} className={`size-10 relative inline-flex items-center justify-center rounded-sm   ${pathname === "/shopping-cart" ? "text-amber-600" : ""}  `}  >
                         <RiShoppingCart2Line size={26} className="hover:text-amber-600  focus:text-amber-600 transition-all" />
-                        <span className="absolute top-0 right-0  bg-amber-600 flex items-center size-5 rounded-full text-white justify-center text-xs " > 2 </span>
+                        {totalItems > 0 &&
+                            <span className="absolute top-0 right-0  bg-amber-600 flex items-center size-5 rounded-full text-white justify-center text-xs " > {totalItems} </span>}
                     </Link>
                     <Link href={'login'} className="btn-primary"  > LogIn </Link>
                 </div>
@@ -56,12 +62,12 @@ const Header = () => {
                                 <Link href={item.href} className={`block p-1.5 hover:text-amber-600 focus:text-amber-600 transition-colors  
                                  ${pathname === "/item.href" ? "text-amber-600" : ""}  
                                 `}
-                                    onClick={handleClick} 
+                                    onClick={handleClick}
                                 > {item.label} </Link>  </li>
                         ))
                         }
                     </ul>
-                    <Link href={"/login"} className="btn-primary w-full text-center  " onClick={handleClick} > LogIn </Link> 
+                    <Link href={"/login"} className="btn-primary w-full text-center  " onClick={handleClick} > LogIn </Link>
                 </div>
             </nav>
         </div>

@@ -1,5 +1,6 @@
 "use client";
 import { allProducts, productFeatures } from "@/data/data";
+import { useCartStore } from "@/store/cartstore";
 import { RiArrowLeftLine, RiShoppingCart2Line, RiStarFill } from "@remixicon/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -9,6 +10,11 @@ const ProductDetails = () => {
     const params = useParams();
     const productId = parseInt(params.id as string)
     const product = allProducts.find(p => p.id === productId)
+    const addToCart = useCartStore((state) => state.addItem);
+    const handleAddToCart = () => {
+        if (!product) return;
+        addToCart(product.id, 1);
+    }
     if (!product) {
         return (
             <div className="min-h-screen flex items-center justify-center  ">
@@ -86,7 +92,7 @@ const ProductDetails = () => {
                             {/* description  */}
                             <p className=""> {product?.desc} </p>
                             {/* add to cart  */}
-                            <button className="btn-primary  flex items-center gap-1  ">
+                            <button onClick={handleAddToCart} className="btn-primary  flex items-center gap-1  ">
                                 <span className="shrink-0 " >
                                     <RiShoppingCart2Line size={20} />
                                 </span>

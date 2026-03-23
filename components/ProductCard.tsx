@@ -1,17 +1,23 @@
+"use client";
+import { useCartStore } from "@/store/cartstore";
 import { ProductCardProps } from "@/types/Type";
 import { RiEyeLine, RiShoppingCart2Line, RiStarFill } from "@remixicon/react";
 import Image from "next/image";
 import Link from "next/link";
 
 
-const ProductCard = ({ id, img, price, name, star }: ProductCardProps) => {
+const ProductCard = ({ id, img, price, name }: ProductCardProps) => {
+    const addToCart = useCartStore((state) => state.addItem);
+    const handleAddToCart = () => {
+        addToCart(id, 1);
+    }
     return (
         <>
 
             <div className="bg-white p-8 rounded-md flex flex-col relative group gap-2.5 ">
                 {/* image */}
                 <div className="py-10 relative flex items-center justify-center bg-amber-50 h-full rounded-xl  ">
-                    <Image src={img} alt={name} height={200} width={200} className="" />
+                    <Image src={img} alt={name} height={200} width={200} className="w-auto h-auto " />
                     <button>
                         <Link href={`/shop/${id}`} className="absolute top-0 right-0 bg-white gap-2 border border-amber-200 p-2 rounded-xs  opacity-0 group-hover:opacity-100   hover:text-amber-600 focus:text-amber-600 transition-all " title="View product details " > <RiEyeLine />
                         </Link>
@@ -21,8 +27,8 @@ const ProductCard = ({ id, img, price, name, star }: ProductCardProps) => {
                 {/* content  */}
                 <div className="space-y-5 mt-auto ">
                     {/* Add to cart btn  */}
-                    <button className="btn-primary gap-2 flex items-center justify-center w-full  " >
-                        <span >
+                    <button onClick={handleAddToCart} className="btn-primary gap-2 flex items-center justify-center w-full  " >
+                        <span  >
                             Add to Cart
                         </span>
                         <RiShoppingCart2Line size={22} />

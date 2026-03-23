@@ -3,6 +3,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import NextTopLoader from "nextjs-toploader";
 
 const lexend = localFont({
   src: "/fonts/Lexend-Regular.ttf",
@@ -26,8 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${lexend.className} ${cunia.variable} bg-slate-50 min-h-svh`}
-      >
+        className={`${lexend.className} ${cunia.variable} bg-slate-50  min-h-svh`}
+      > 
+       <NextTopLoader color="oklch(66.6% 0.179 58.318)" 
+       showSpinner={false} />
         <Header />
         <main className="min-h-svh">{children}</main>
         <Footer />
