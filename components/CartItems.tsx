@@ -72,7 +72,7 @@ const CartItems = () => {
 
                                         <div className="flex-1">
                                             <h3 className=" font-medium mb-2  " > {item.name} </h3>
-                                            <p className="text-gray-600 mb-2 "> $ {item.price} </p>
+                                            <p className="text-gray-600 mb-2 "> $ {(item.price).toFixed(2)} </p>
 
                                             <div className=" flex items-center  gap-2 border border-gray-300 w-fit  rounded-lg overflow-hidden ">
                                                 <button className="p-2 hover:bg-gray-100 focus:bg-gray-100 transition "
@@ -97,13 +97,8 @@ const CartItems = () => {
                                         {/* total price  */}
                                         <div className="">
                                             <p className="text-gray-600 font-semibold  ">Subtotal:</p>
-                                            <p className=" text-amber-600 font-cunia"> ${item.price *item.quantity } </p>
+                                            <p className=" text-amber-600 font-cunia"> ${(item.price *item.quantity ).toFixed(2)} </p> 
                                         </div>
-                                    </div>
-                                    {/* total price  */}
-                                    <div className="mt-2 pt-3 border-t border-gray-100 flex justify-between">
-                                        <p className="text-gray-600 font-semibold  ">Total:</p>
-                                        <p className=" text-amber-600 font-cunia"> ${"700"} </p>
                                     </div>
                                 </div>
                             ))}
@@ -114,7 +109,7 @@ const CartItems = () => {
                             <table className="min-w-full text-left border-collapse" >
                                 <thead className="bg-gray-50 border-b border-gray-200    " >
                                     <tr className="" >
-                                        {["product", "Price ", "Quantity", "Total"].map(label => (
+                                        {["product", "Price ", "Quantity", "Subtotal"].map(label => (
                                             <th className="p-4 font-semibold " key={label} >{label} </th>
                                         )
                                         )}
@@ -136,7 +131,7 @@ const CartItems = () => {
                                                     <p className="font-medium "> {item.name} </p>
                                                 </div>
                                             </td>
-                                            <td className="text-gray-700 p-4 "> ${300} </td>
+                                            <td className="text-gray-700 p-4 "> ${(item.price).toFixed(2)} </td>
                                             <td className="p-4 ">
                                                 {/* item  Counter  */}
                                                 <div className=" flex items-center  gap-2 border border-gray-300 w-fit  rounded-lg overflow-hidden ">
@@ -154,10 +149,10 @@ const CartItems = () => {
                                                     </button>
                                                 </div>
                                             </td>
-                                            {/* total price  */}
+                                            {/* subtotal price  */}
 
                                             <td className="p-4 font-semibold  text-amber-600">
-                                                ${item.price}
+                                                ${(item.price * item.quantity).toFixed(2)}
                                             </td>
                                             <td className="p-4 " >
                                                 {/* trash icon  */}
@@ -194,23 +189,23 @@ const CartItems = () => {
                             {/* total  */}
                             <div className="flex justify-between text-gray-600 " >
                                 <h4 > Subtotal :  </h4>
-                                <p className="">${Subtotal} </p>
+                                <p className="">${(Subtotal).toFixed(2)} </p>
                             </div>
                             {/* shipping  */}
                             <div className="flex justify-between  text-gray-600">
                                 <h4> Shipping :  </h4>
-                                <p className="text-amber-600  ">$ free </p>
+                                <p className="text-amber-600  ">$ Free </p>
                             </div>
                             {/* Tax   */}
                             <div className="flex justify-between text-gray-600">
                                 <h4> Tax  :  </h4>
-                                <p className="">${200} </p>
+                                <p className="">${(Subtotal/70).toFixed(2)} </p>
                             </div>
 
                             {/* total  */}
                             <div className="border-t border-gray-200 pt-4 mb-6 flex justify-between font-semibold">
                                 <h4> Total :  </h4>
-                                <p className="">${700} </p>
+                                <p className="">${(Subtotal + Subtotal / 70).toFixed(2)} </p>
                             </div>
                         </div>
                         {/* checkout btn  */}
