@@ -47,8 +47,8 @@ const Header = () => {
                 <div className="flex items-center gap-2 " >
                     <Link href={'/shopping-cart'} className="size-10 inline-flex items-center justify-center rounded-sm relative" >
                         <RiShoppingCart2Line size={26} className={`hover:text-amber-600 focus:text-amber-600 transition-colors  ${pathname === "/shopping-cart" ? "text-amber-600" : ""}   `} />
-                        <span className="size-5 bg-amber-600 text-white flex items-center justify-center rounded-full text-xs absolute top-0 right-0  "  >2
-                        </span>
+                         {totalItems > 0 &&
+                            <span className="absolute top-0 right-0  bg-amber-600 flex items-center size-5 rounded-full text-white justify-center text-xs " > {totalItems} </span>}
                     </Link>
                     <button onClick={handleClick}  >
                         {openMenu ? <RiCloseLine size={28} /> : <RiMenuLine size={28} />}
