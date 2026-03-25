@@ -35,14 +35,16 @@ const CartItems = () => {
     const Subtotal = useMemo(() => {
         return cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
     }, [cartItems])
-
+    const shipping = Subtotal == 0 ? 0 : Subtotal >= 100 ? 0 : 100 //free shipping 
+    const tax = Subtotal * 0.1;  //10 % tax 
+    const total = Subtotal + tax + shipping;
     return <section className="py-24 md:py-28 ">
         <div className="container">
             {/* Title  */}
             <div className="mb-8 space-y-1.5">
                 <h3 className="text-3xl "> Shopping Cart </h3>
                 <p className="text-neutral-600"> {TotalItems}
-                    {TotalItems === 1 ? "item" : "items" }  in your cart </p>
+                    {TotalItems === 1 ? "item" : "items"}  in your cart </p>
             </div>
             <div className="grid gap-8 lg:grid-cols-3 lg:items-start  " >
                 {/* Cart items  */}
@@ -97,7 +99,7 @@ const CartItems = () => {
                                         {/* total price  */}
                                         <div className="">
                                             <p className="text-gray-600 font-semibold  ">Subtotal:</p>
-                                            <p className=" text-amber-600 font-cunia"> ${(item.price *item.quantity ).toFixed(2)} </p> 
+                                            <p className=" text-amber-600 font-cunia"> ${(item.price * item.quantity).toFixed(2)} </p>
                                         </div>
                                     </div>
                                 </div>
@@ -194,18 +196,18 @@ const CartItems = () => {
                             {/* shipping  */}
                             <div className="flex justify-between  text-gray-600">
                                 <h4> Shipping :  </h4>
-                                <p className="text-amber-600  ">$ Free </p>
+                                <p className="text-amber-600  ">$ {shipping===0 ? "Free":`${shipping.toFixed(2)}`} </p>
                             </div>
                             {/* Tax   */}
                             <div className="flex justify-between text-gray-600">
                                 <h4> Tax  :  </h4>
-                                <p className="">${(Subtotal/70).toFixed(2)} </p>
+                                <p className="">${(tax).toFixed(2)} </p>
                             </div>
 
                             {/* total  */}
                             <div className="border-t border-gray-200 pt-4 mb-6 flex justify-between font-semibold">
                                 <h4> Total :  </h4>
-                                <p className="">${(Subtotal + Subtotal / 70).toFixed(2)} </p>
+                                <p className="">${(total).toFixed(2)} </p>
                             </div>
                         </div>
                         {/* checkout btn  */}
