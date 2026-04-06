@@ -3,7 +3,8 @@
 A modern Ecommerce Furniture Website built using Next.js, React, and Zustand for state management.
 This project is a frontend-only application (no backend) that demonstrates cart management, product browsing, and responsive UI design.
 
-🚀 Tech Stack
+🚀 Tech Stack 
+   TypeScript
 ⚡ Next.js (App Router)
 ⚛️ React
 🧠 Zustand — Global State Management
@@ -80,7 +81,7 @@ Global store access across components
 
 ### 🛍️ Shop Page
 
-![Shop Page](/screenshots/shop.png)
+![Shop Page](/screenshots/Shop.png)
 
 
 ### 🛒 Cart Page
